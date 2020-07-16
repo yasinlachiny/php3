@@ -163,9 +163,10 @@ for example I can create bellow part and get the timestamp and use it as  versio
       id: timestamp
       run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H-%M-%S-%3NZ')"
 ```
+#TODO
 
 
-
+#Notes
 we can install npm by 
 ```
 commands:

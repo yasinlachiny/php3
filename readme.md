@@ -170,8 +170,8 @@ I should update
 ```
 in `.github/workflows/php.yml` after I  create application
 # TODO
-In S3 I give EC2 S3fullaccess and I should limit it.
-Using AWS command line to deploy.
+1. In S3 I give EC2 S3fullaccess and I should limit it.
+2. Using AWS command line to deploy.
 
 
 # Notes

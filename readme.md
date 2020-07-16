@@ -26,7 +26,16 @@ why this platform?
 10. ssh to EC2 VMs and Import a SQL file into the created DB
 ```
     aws s3 cp BACKUP.sql s3://BUCKET_NAME
-    mysql -u yasin -h DATABASE-URL -p ebdb < BACKUP.sql  
+    mysql -u USER -h DATABASE-URL -p ebdb < BACKUP.sql 
+    mysql -u USER -h DATABASE-URL -p -D ebdb -e "UPDATE users SET id=3 WHERE id=1;";                                    
+```
+#Data base username and password
+We can not save username and password in plain text so we should use an other way so in `config/database.php` I use 
+```
+define('RDS_HOSTNAME',$_SERVER['RDS_HOSTNAME']);
+define('RDS_USERNAME',$_SERVER['RDS_USERNAME']);
+define('RDS_PASSWORD',$_SERVER['RDS_PASSWORD']);
+define('RDS_DB_NAME',$_SERVER['RDS_DB_NAME']);
 ```
 # Nginx
 Amazon Linux 1 (AL1) uses Apache2. However, Amazon Linux 2 (AL2) uses Nginx. After I use AL2 I get 404. 

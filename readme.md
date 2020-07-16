@@ -60,7 +60,7 @@ container_commands:
     02_get_env_vars:
       command: aws s3 cp  s3://BUCKET-NAME/.env .
 ```
-#install packages
+# install packages
 I can install any packages by adding it to `.ebextensions/init.config` as below.
 packages:
 ```
@@ -130,7 +130,7 @@ stdout_logfile=/var/www/html/storage/logs/worker.log
 ```
 I can not run `/bin/supervisord -c /etc/supervisord.conf` by `container_commands` or `commands`
 because I should run it after deployment. It has different way in AL2 so be careful.
-I should create `.platform/hooks/postdeploy` directory and add 01_Supervisor.sh file. and in `01_Supervisor.sh` I can run  `/bin/supervisord -c /etc/supervisord.conf`
+I should create `.platform/hooks/postdeploy` directory and add `01_Supervisor.sh` file. and in `01_Supervisor.sh` I can run  `/bin/supervisord -c /etc/supervisord.conf`
 ```
 #!/usr/bin/env bash
 touch /var/www/1.log
@@ -157,7 +157,7 @@ and add cron file to .ebextensions.
  The important part is adding new empty line at the end of cron file.
 # CI/CD
 create `.github/workflows/` folder and add `php.yml`. in `php.yml` I can deploy a code and say what I want to do
-for example I can create bellow part and get the timestamp and use it as  version_label(`version_label: "${{ steps.timestamp.outputs.date}}"`)
+for example I can create below part and get the timestamp and use it as  version_label(`version_label: "${{ steps.timestamp.outputs.date}}"`)
 ```
     - name: Get timestamp
       id: timestamp

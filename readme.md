@@ -175,7 +175,7 @@ in `.github/workflows/php.yml` after I  create application
 
 
 # Notes
-we can install npm by 
+I can install npm by 
 ```
 commands:
   01enable_epel:
@@ -185,7 +185,7 @@ commands:
 ```
 
 and It works but I see that the project already work on it and add it to `package.json`
-for setting up ssl we can go to AWS Certificate Manager and Provision certificates. and then use this certificate in beanstalk loadbalancer for setting up ssl. I
+for setting up ssl I can go to AWS Certificate Manager and Provision certificates. and then use this certificate in beanstalk loadbalancer for setting up ssl. I
 have `.ir` domain name and I try to use it but AWS do not send email and show error. I do not have `.com` domain now to show setting up ssl.
 
 

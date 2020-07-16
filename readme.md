@@ -29,8 +29,8 @@ why this platform?
     mysql -u USER -h DATABASE-URL -p ebdb < BACKUP.sql 
     mysql -u USER -h DATABASE-URL -p -D ebdb -e "UPDATE users SET id=3 WHERE id=1;";                                    
 ```
-#Data base username and password
-We can not save username and password in plain text so we should use another way so in `config/database.php` I use 
+# Data base username and password
+I can not save username and password in plain text so I should use another way so in `config/database.php` I use 
 ```
 define('RDS_HOSTNAME',$_SERVER['RDS_HOSTNAME']);
 define('RDS_USERNAME',$_SERVER['RDS_USERNAME']);
@@ -52,7 +52,7 @@ I can add this after the VMs is created but I want to do it automatically so
 I should create `.platform` and put the `php.conf` in `.platform/nginx/conf.d/elasticbeanstalk/php.conf`
 
 # Copy .env from S3
-I want to download .env from s3. in Create Application we assign S3fullaccess role to EC2. so we can run the S3 command without a secret key or access key.
+I want to download .env from s3. in Create Application we assign S3fullaccess role to EC2. so I can run the S3 command without a secret key or access key.
 so I create .ebextensions folder and  init.config file. In init.config I add 
 ```
 
@@ -61,7 +61,7 @@ container_commands:
       command: aws s3 cp  s3://BUCKET-NAME/.env .
 ```
 #install packages
-We can install any packages by adding it to .ebextensions/init.config as bellow.
+I can install any packages by adding it to .ebextensions/init.config as bellow.
 packages:
 ```
   yum:
@@ -76,7 +76,7 @@ packages:
     php-bcmath-7.4.5-1.amzn2.x86_64: []
     php-json-7.4.5-1.amzn2.x86_64: []
 ```
-`php-tokenizer` `php-curlphp-zip` have been install when we install  `php-common-7.4.5-1.amzn2.x86_64`
+`php-tokenizer` `php-curlphp-zip` have been install when I install  `php-common-7.4.5-1.amzn2.x86_64`
 
 # Composer install
 First I install composer and then I install dependencies. so I add this block to init.config
@@ -141,7 +141,7 @@ and after that, the error disappears.
 
 
 # Add a Cron entry
-There are a lot of ways to do that but I do it by add bellow code to init.config
+There are a lot of ways to do that but I do it by add below code to init.config
 ```
 container_commands:
     01_remove_old_cron_jobs:
@@ -163,14 +163,18 @@ for example I can create bellow part and get the timestamp and use it as  versio
       id: timestamp
       run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H-%M-%S-%3NZ')"
 ```
-we should update
-        application_name: z89
-        environment_name: Z89-env
-in .github/workflows/php.yml after we  create application
-#TODO
+I should update
+```
+        application_name: APP-NAME
+        environment_name: ENV-NAME
+```
+in `.github/workflows/php.yml` after I  create application
+# TODO
+In S3 I give EC2 S3fullaccess and I should limit it.
+Using AWS command line to deploy.
 
 
-#Notes
+# Notes
 we can install npm by 
 ```
 commands:

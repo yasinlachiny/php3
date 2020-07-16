@@ -1,29 +1,28 @@
-1
 # Requirement
 1. key<br />
-At first  go to EC2 section and create key then store it in a safe place. This key is needed for accessng EC2 VMs.
+At first, go to the EC2 section and create the key then store it in a safe place. This key is needed for accessing  EC2 VMs.
 
 2. S3 role<br />
-Storing cloud_user_accessKeys in EC2 VMs is not safe so I should give EC2 instances a role that can access S3. For simplicity I give full access to S3.
+Storing cloud_user_accessKeys in EC2 VMs is not safe so I should give EC2 instances a role that can access S3. For simplicity, I give full access to S3.
 
 3. cloud_user_accessKeys<br />
 I want to update our code by Github so it should can access to our beanstalk by cloud_user_accessKeys.
 
 # Create Application
 
-1. go to Elastic Beanstalk section and .
+1. go to Elastic Beanstalk section.
 3.choose proper application name
 3.in Platform choose PHP 7.4 running on 64bit Amazon Linux 2
 why this platform?
- Amazon Linux 2 use nginx and  and PHP 7.3 have a bug in CICD.
+ Amazon Linux 2 use Nginx and PHP 7.3 have a bug in CICD.
 
-4.upload your code as zip file.
+4.upload your code as a zip file.
 5.Select Configure more options
 
 6.In Security Choose your EC2 key pair and IAM instance profile that you create in Requirement.
 7.In Database write proper username and password
 8.Select Create app
-9.It take a few minute to show final status
+9.It takes a few minutes to show final status
 10. ssh to EC2 VMs and Import a SQL file into the created DB
 ```
     aws s3 cp BACKUP.sql s3://BUCKET_NAME
@@ -31,7 +30,7 @@ why this platform?
     mysql -u USER -h DATABASE-URL -p -D ebdb -e "UPDATE users SET id=3 WHERE id=1;";                                    
 ```
 #Data base username and password
-We can not save username and password in plain text so we should use an other way so in `config/database.php` I use 
+We can not save username and password in plain text so we should use another way so in `config/database.php` I use 
 ```
 define('RDS_HOSTNAME',$_SERVER['RDS_HOSTNAME']);
 define('RDS_USERNAME',$_SERVER['RDS_USERNAME']);
@@ -52,7 +51,7 @@ I can add this after the VMs is created but I want to do it automatically so
 I should create `.platform` and put the `php.conf` in `.platform/nginx/conf.d/elasticbeanstalk/php.conf`
 
 # Copy .env from S3
-I want to download .env from s3. in Create Application we assign S3fullaccess role to EC2. so we can run S3 command without secret key or access key.
+I want to download .env from s3. in Create Application we assign S3fullaccess role to EC2. so we can run the S3 command without a secret key or access key.
 so I create .ebextensions folder and  init.config file. In init.config I add 
 ```
 
@@ -123,7 +122,7 @@ and after that the error is disaper.
 
 
 # Add a Cron entry
-There are a lot of way to do that but I do it by add bellow code to init.config
+There are a lot of ways to do that but I do it by add bellow code to init.config
 ```
 container_commands:
     01_remove_old_cron_jobs:
@@ -139,7 +138,7 @@ and add cron file to .ebextensions.
  The important part is adding new empty line at the end of cron file.
 # CI/CD
 create .github/workflows/ folder and add php.yml. in add.yml I can deploy a code and say what I want to do
-forexample I can create bellow part and get timestamp and use it as  version_label(version_label: "${{ steps.timestamp.outputs.date}}")
+for example I can create bellow part and get the timestamp and use it as  version_label(version_label: "${{ steps.timestamp.outputs.date}}")
 ```
     - name: Get timestamp
       id: timestamp

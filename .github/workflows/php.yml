@@ -1,0 +1,50 @@
+name: PHP Composer
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+      
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+          
+    - name: Install dependencies
+      if: steps.composer-cache.outputs.cache-hit != 'true'
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Generate deployment package
+      run: zip -r package.zip . 
+
+    - name: Get timestamp
+      id: timestamp
+      run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H-%M-%S-%3NZ')"
+      
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v10
+      with:
+        use_existing_version_if_available: "false"
+        aws_access_key: "AKIAQLC2VHMBI7V3BYVL"
+        aws_secret_key: "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"
+        application_name: saq
+        environment_name: saq-env
+        version_label: "${{ steps.timestamp.outputs.date}}"
+        region: us-east-1
+        deployment_package: package.zip

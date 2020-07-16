@@ -78,8 +78,8 @@ packages:
 ```
 `php-tokenizer` `php-curlphp-zip` have been install when we install  `php-common-7.4.5-1.amzn2.x86_64`
 
-# composer install
-first I install composer and then I install dependencies. so I add this block to init.config
+# Composer install
+First I install composer and then I install dependencies. so I add this block to init.config
 ```
 container_commands:
     03-install-composer:
@@ -88,7 +88,7 @@ container_commands:
       command: "composer.phar install --optimize-autoloader"
 ```
 # php artisan and permissions
-for run php artisan I should add this code to init.config
+For run php artisan I should add this code to init.config
 ```
 container_commands:
     05-generate-key:
@@ -103,7 +103,7 @@ container_commands:
 I can not run `sudo chgrp -R www-data storage bootstrap/cache` because there is no `www-data` group.
 
 # Setup a Supervisor
-firs I should add bellow code to init.config
+Firs I should add bellow code to init.config
 ```
 container_commands:
     01-copy_systemd_file:

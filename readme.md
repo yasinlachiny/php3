@@ -16,13 +16,13 @@ I want to update our code by Github so it should can access to our beanstalk by 
 why this platform?
  Amazon Linux 2 use Nginx and PHP 7.3 have a bug in CICD.
 
-4.upload your code as a zip file.
-5.Select Configure more options
+4. upload your code as a zip file.
+5. Select Configure more options
 
-6.In Security Choose your EC2 key pair and IAM instance profile that you create in Requirement.
-7.In Database write proper username and password
-8.Select Create app
-9.It takes a few minutes to show the final status
+6. In Security Choose your EC2 key pair and IAM instance profile that you create in Requirement.
+7. In Database write proper username and password
+8. Select Create app
+9. It takes a few minutes to show the final status
 10. ssh to EC2 VMs and Import a SQL file into the created DB
 ```
     aws s3 cp BACKUP.sql s3://BUCKET_NAME

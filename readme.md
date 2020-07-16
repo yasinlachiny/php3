@@ -10,7 +10,7 @@ I want to update our code by Github so it should can access to our beanstalk by 
 
 # Create Application
 
-1. go to Elastic Beanstalk section.
+1. go to the Elastic Beanstalk section.
 3.choose proper application name
 3.in Platform choose PHP 7.4 running on 64bit Amazon Linux 2
 why this platform?
@@ -22,7 +22,7 @@ why this platform?
 6.In Security Choose your EC2 key pair and IAM instance profile that you create in Requirement.
 7.In Database write proper username and password
 8.Select Create app
-9.It takes a few minutes to show final status
+9.It takes a few minutes to show the final status
 10. ssh to EC2 VMs and Import a SQL file into the created DB
 ```
     aws s3 cp BACKUP.sql s3://BUCKET_NAME
@@ -69,7 +69,7 @@ container_commands:
       command: "composer.phar install --optimize-autoloader"
 ```
 # php artisan and permissions
-for run php artisan I sould a this code to init.config
+for run php artisan I should add this code to init.config
 ```
 container_commands:
     05-generate-key:
@@ -118,7 +118,7 @@ touch /var/www/1.log
 /bin/supervisord -c /etc/supervisord.conf
 ```
 But after I launch this code I get permission denied error. so I should run `chmod +x .platform/hooks/postdeploy/01_Supervisor.sh`
-and after that the error is disaper.
+and after that, the error disappears.
 
 
 # Add a Cron entry

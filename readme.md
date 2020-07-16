@@ -37,6 +37,7 @@ define('RDS_USERNAME',$_SERVER['RDS_USERNAME']);
 define('RDS_PASSWORD',$_SERVER['RDS_PASSWORD']);
 define('RDS_DB_NAME',$_SERVER['RDS_DB_NAME']);
 ```
+
 # Nginx
 Amazon Linux 1 (AL1) uses Apache2. However, Amazon Linux 2 (AL2) uses Nginx. After I use AL2 I get 404. 
 so how can I solve that?
@@ -59,6 +60,24 @@ container_commands:
     02_get_env_vars:
       command: aws s3 cp  s3://BUCKET-NAME/.env .
 ```
+#install packages
+We can install any packages by adding it to .ebextensions/init.config as bellow.
+packages:
+```
+  yum:
+    curl: []
+    git: []
+    htop: []
+    php-common-7.4.5-1.amzn2.x86_64: []
+    php-fpm-7.4.5-1.amzn2.x86_64: []
+    php-mbstring-7.4.5-1.amzn2.x86_64: []
+    php-xml-7.4.5-1.amzn2.x86_64: []
+    php-mysqlnd-7.4.5-1.amzn2.x86_64: []
+    php-bcmath-7.4.5-1.amzn2.x86_64: []
+    php-json-7.4.5-1.amzn2.x86_64: []
+```
+`php-tokenizer` `php-curlphp-zip` have been install when we install  `php-common-7.4.5-1.amzn2.x86_64`
+
 # composer install
 first I install composer and then I install dependencies. so I add this block to init.config
 ```

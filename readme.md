@@ -103,7 +103,7 @@ container_commands:
 I can not run `sudo chgrp -R www-data storage bootstrap/cache` because there is no `www-data` group.
 
 # Setup a Supervisor
-Firs I should add bellow code to init.config
+First I should add bellow code to init.config
 ```
 container_commands:
     01-copy_systemd_file:
@@ -129,7 +129,7 @@ redirect_stderr=true
 stdout_logfile=/var/www/html/storage/logs/worker.log
 ```
 I can not run `/bin/supervisord -c /etc/supervisord.conf` by `container_commands` or `commands`
-because I should run it after deployment. It has diffrent way in AL2 so be careful.
+because I should run it after deployment. It has different way in AL2 so be careful.
 I should create `.platform/hooks/postdeploy` directory and add 01_Supervisor.sh file. and in 01_Supervisor.sh I can run  `/bin/supervisord -c /etc/supervisord.conf`
 ```
 #!/usr/bin/env bash

@@ -163,6 +163,10 @@ for example I can create bellow part and get the timestamp and use it as  versio
       id: timestamp
       run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H-%M-%S-%3NZ')"
 ```
+we should update
+        application_name: z89
+        environment_name: Z89-env
+in .github/workflows/php.yml after we  create application
 #TODO
 
 

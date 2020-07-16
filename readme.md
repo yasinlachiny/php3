@@ -1,3 +1,4 @@
+1
 # Requirement
 1. key<br />
 At first  go to EC2 section and create key then store it in a safe place. This key is needed for accessng EC2 VMs.

@@ -164,5 +164,22 @@ for example I can create bellow part and get the timestamp and use it as  versio
       run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H-%M-%S-%3NZ')"
 ```
 
+
+
+we can install npm by 
+```
+commands:
+  01enable_epel:
+    command: sudo amazon-linux-extras install epel
+  02npm_install:
+    command: sudo yum -y --enablerepo=epel install nodejs npm
+```
+
+and It works but I see that the project already work on it and add it to `package.json`
+for setting up ssl we can go to AWS Certificate Manager and Provision certificates. and then use this certificate in beanstalk loadbalancer for setting up ssl.
+have .ir domain name and I try to use it but AWS do not send email and show error. I do not have .com domain now to show it.
+setting up ssl.
+I have .ir domain name and I try to use it but AWS do not send email and show error. I do not have .com domain now to show it.
+
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 

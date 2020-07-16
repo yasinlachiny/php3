@@ -11,8 +11,8 @@ I want to update our code by Github so it should can access to our beanstalk by 
 # Create Application
 
 1. go to the Elastic Beanstalk section.
-3.choose proper application name
-3.in Platform choose PHP 7.4 running on 64bit Amazon Linux 2
+2. choose proper application name
+3. in Platform choose PHP 7.4 running on 64bit Amazon Linux 2
 why this platform?
  Amazon Linux 2 use Nginx and PHP 7.3 have a bug in CICD.
 

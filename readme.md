@@ -41,7 +41,7 @@ define('RDS_DB_NAME',$_SERVER['RDS_DB_NAME']);
 # Nginx
 Amazon Linux 1 (AL1) uses Apache2. However, Amazon Linux 2 (AL2) uses Nginx. After I use AL2 I get 404. 
 so how can I solve that?
-I should add bellow part to /etc/nginx/conf.d/elasticbeanstalk/php.conf
+I should add bellow part to `/etc/nginx/conf.d/elasticbeanstalk/php.conf`
 ```
 location / {
      try_files $uri $uri/ /index.php?$query_string;
@@ -53,7 +53,7 @@ I should create `.platform` and put the `php.conf` in `.platform/nginx/conf.d/el
 
 # Copy .env from S3
 I want to download .env from s3. in Create Application we assign S3fullaccess role to EC2. so I can run the S3 command without a secret key or access key.
-so I create .ebextensions folder and  init.config file. In init.config I add 
+so I create .ebextensions folder and  `init.config` file. In `init.config` I add 
 ```
 
 container_commands:
@@ -61,7 +61,7 @@ container_commands:
       command: aws s3 cp  s3://BUCKET-NAME/.env .
 ```
 #install packages
-I can install any packages by adding it to .ebextensions/init.config as bellow.
+I can install any packages by adding it to `.ebextensions/init.config` as below.
 packages:
 ```
   yum:
@@ -88,7 +88,7 @@ container_commands:
       command: "composer.phar install --optimize-autoloader"
 ```
 # php artisan and permissions
-For run php artisan I should add this code to init.config
+For run php artisan I should add this code to `init.config`
 ```
 container_commands:
     05-generate-key:
@@ -130,7 +130,7 @@ stdout_logfile=/var/www/html/storage/logs/worker.log
 ```
 I can not run `/bin/supervisord -c /etc/supervisord.conf` by `container_commands` or `commands`
 because I should run it after deployment. It has different way in AL2 so be careful.
-I should create `.platform/hooks/postdeploy` directory and add 01_Supervisor.sh file. and in 01_Supervisor.sh I can run  `/bin/supervisord -c /etc/supervisord.conf`
+I should create `.platform/hooks/postdeploy` directory and add 01_Supervisor.sh file. and in `01_Supervisor.sh` I can run  `/bin/supervisord -c /etc/supervisord.conf`
 ```
 #!/usr/bin/env bash
 touch /var/www/1.log
@@ -185,8 +185,7 @@ commands:
 ```
 
 and It works but I see that the project already work on it and add it to `package.json`
-for setting up ssl we can go to AWS Certificate Manager and Provision certificates. and then use this certificate in beanstalk loadbalancer for setting up ssl.
-have .ir domain name and I try to use it but AWS do not send email and show error. I do not have .com domain now to show it.
-setting up ssl.
-I have .ir domain name and I try to use it but AWS does not send email and show error. I do not have .com domain now to show it.
+for setting up ssl we can go to AWS Certificate Manager and Provision certificates. and then use this certificate in beanstalk loadbalancer for setting up ssl. I
+have `.ir` domain name and I try to use it but AWS do not send email and show error. I do not have `.com` domain now to show setting up ssl.
+
 

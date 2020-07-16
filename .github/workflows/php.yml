@@ -41,8 +41,8 @@ jobs:
       uses: einaregilsson/beanstalk-deploy@v10
       with:
         use_existing_version_if_available: "false"
-        aws_access_key: "AKIAQLC2VHMBKPZJMXN5"
-        aws_secret_key: "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"
+        aws_access_key: ${{secrets.AWS_ACCESS_KEY}}
+        aws_secret_key: ${{secrets.AWS_SECRET_KEY}}
         application_name: z89
         environment_name: Z89-env
         version_label: "${{ steps.timestamp.outputs.date}}"

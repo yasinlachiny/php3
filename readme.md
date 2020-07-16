@@ -137,8 +137,8 @@ and add cron file to .ebextensions.
 ```
  The important part is adding new empty line at the end of cron file.
 # CI/CD
-create .github/workflows/ folder and add php.yml. in add.yml I can deploy a code and say what I want to do
-for example I can create bellow part and get the timestamp and use it as  version_label(version_label: "${{ steps.timestamp.outputs.date}}")
+create `.github/workflows/` folder and add `php.yml`. in `php.yml` I can deploy a code and say what I want to do
+for example I can create bellow part and get the timestamp and use it as  version_label(`version_label: "${{ steps.timestamp.outputs.date}}"`)
 ```
     - name: Get timestamp
       id: timestamp

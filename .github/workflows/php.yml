@@ -43,8 +43,8 @@ jobs:
         use_existing_version_if_available: "false"
         aws_access_key: "AKIAQLC2VHMBI7V3BYVL"
         aws_secret_key: "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"
-        application_name: saq
-        environment_name: saq-env
+        application_name: z89
+        environment_name: Z89-env
         version_label: "${{ steps.timestamp.outputs.date}}"
         region: us-east-1
         deployment_package: package.zip
